@@ -3,12 +3,12 @@ import time
 from appium.webdriver.common.mobileby import MobileBy
 from behave import *
 
+from pageobjects.contact_list import ContactListPageObject
+
 
 @given("the user access list of contacts")
 def step_impl(context):
     context.driver.start_activity("com.example.android.contactmanager", "ContactManager")
-
-    context.driver.find_element(MobileBy.ID, "com.example.android.contactmanager:id/showInvisible").click()
 
 
 @when('the user press "Add Contact"')
@@ -43,6 +43,8 @@ def step_impl(context):
 
 @then("the contact appears in the list")
 def step_impl(context):
+    ContactListPageObject(context.driver).show_all_contacts()
+
     contacts = context.driver.find_elements(MobileBy.XPATH, '//android.widget.TextView[@content-desc="false"]')
 
     assert [contact for contact in contacts if contact.text == context.contact_name], 'Contact not in list'

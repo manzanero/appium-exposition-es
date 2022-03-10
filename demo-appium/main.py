@@ -21,8 +21,10 @@ driver.find_element(MobileBy.ACCESSIBILITY_ID, "Add Contact").click()
 
 time.sleep(1)
 
+assert driver.find_element(MobileBy.ID, "com.example.android.contactmanager:id/contactNameEditText").is_displayed()
+
 # write in element
-driver.find_element(MobileBy.ID, "com.example.android.contactmanager:id/contactNameEditText").send_keys('Alejandro')
+driver.find_element(MobileBy.ID, "com.example.android.contactmanager:id/contactNameEditText").send_keys('asdf')
 
 time.sleep(1)
 
